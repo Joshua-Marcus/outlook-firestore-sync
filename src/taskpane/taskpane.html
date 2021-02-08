@@ -1,0 +1,60 @@
+<!-- Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT License. -->
+<!-- This file shows how to design a first-run page that provides a welcome screen to the user about the features of the add-in. -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ResVu Sync</title>
+
+    <!-- Office JavaScript API -->
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
+
+    <!-- For more information on Office UI Fabric, visit https://developer.microsoft.com/fabric. -->
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/9.6.1/css/fabric.min.css"/>
+
+    <!-- Template styles -->
+    <link href="taskpane.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="ms-font-m ms-welcome ms-Fabric">
+    <div id="no-auth" style="display: none;">
+        <header class="ms-welcome__header ms-bgColor-neutralLighter">
+            <img width="90" height="90" src="../../assets/logo-filled.png" alt="ResVu" title="ResVu" />
+            <h1 class="ms-font-su">ResVu sync</h1>
+            <p class="ms-font-l">Please login to continue.</p>
+
+        </header>
+        <main id="app-body" class="ms-welcome__main">
+            <input type="email" placeholder="Email" id="email" name="email" required>
+            <input type="password" placeholder="Password" id="password" name="password" required>
+            <div role="button" id="login-btn" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
+                <span class="ms-Button-label">Login</span>
+            </div>
+            <p id="login-result"></p>
+        </main>
+    </div>
+
+    <div id="auth" style="display: none;">
+        <header class="ms-welcome__header ms-bgColor-neutralLighter">
+            <img width="90" height="90" src="../../assets/logo-filled.png" alt="ResVu" title="ResVu" />
+            <h1 class="ms-font-su">ResVu sync</h1>
+            <p class="ms-font-l">You are currently logged in as: <span id="authEmail"></span></p>
+
+        </header>
+        <main id="app-body" class="ms-welcome__main">
+            <p class="ms-font-l">You have succesfully set up ResVu sync.</p>
+            <p class="ms-font-l">You can sync an email to the system by clicking the "Sync Email" button in your outlook toolbar.</p>
+            <div role="button" id="logout-btn" class="ms-welcome__action ms-Button ms-Button--hero-logout ms-font-xl">
+                <span class="ms-Button-label-logout">Logout</span>
+            </div>
+        </main>
+    </div>
+
+
+</body>
+
+</html>
