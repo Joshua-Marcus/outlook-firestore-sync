@@ -1,2 +1,4 @@
 node_modules
 .vscode
+./src/env/config.ts
+/src/env/config.ts
