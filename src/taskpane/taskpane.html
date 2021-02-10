@@ -23,8 +23,8 @@
 <body class="ms-font-m ms-welcome ms-Fabric">
     <div id="no-auth" style="display: none;">
         <header class="ms-welcome__header ms-bgColor-neutralLighter">
-            <img width="90" height="90" src="../../assets/logo-filled.png" alt="ResVu" title="ResVu" />
-            <h1 class="ms-font-su">ResVu sync</h1>
+            <img width="90" height="90" src="../../assets/logo-filled.png" alt="Firestore" title="Firestore" />
+            <h1 class="ms-font-su">Firestore sync</h1>
             <p class="ms-font-l">Please login to continue.</p>
 
         </header>
@@ -40,14 +40,20 @@
 
     <div id="auth" style="display: none;">
         <header class="ms-welcome__header ms-bgColor-neutralLighter">
-            <img width="90" height="90" src="../../assets/logo-filled.png" alt="ResVu" title="ResVu" />
-            <h1 class="ms-font-su">ResVu sync</h1>
+            <img width="90" height="90" src="../../assets/logo-filled.png" alt="Firestore" title="Firestore" />
+            <h1 class="ms-font-su">Firestore sync</h1>
             <p class="ms-font-l">You are currently logged in as: <span id="authEmail"></span></p>
 
         </header>
         <main id="app-body" class="ms-welcome__main">
-            <p class="ms-font-l">You have succesfully set up ResVu sync.</p>
-            <p class="ms-font-l">You can sync an email to the system by clicking the "Sync Email" button in your outlook toolbar.</p>
+            <p class="ms-font-l">You have succesfully set up Firestore sync.</p>
+            <p class="ms-font-l">You can sync an email to the system by clicking the "Sync Email" button below</p>
+
+            <div role="button" id="sync-btn" class="ms-welcome__action ms-Button ms-Button--hero-sync ms-font-xl">
+                <span class="ms-Button-label-sync">Sync Email</span>
+            </div>
+
+            <hr class="hr">
             <div role="button" id="logout-btn" class="ms-welcome__action ms-Button ms-Button--hero-logout ms-font-xl">
                 <span class="ms-Button-label-logout">Logout</span>
             </div>

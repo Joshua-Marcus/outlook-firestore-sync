@@ -10,6 +10,17 @@
      margin: 0;
      padding: 0;
  }
+
+ .hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+    width: 100%;
+    margin-top: 40px;
+ }
  
  .ms-welcome__header {
     padding: 20px;
@@ -113,3 +124,14 @@ input[type=email], input[type=password] {
  color: #2b91c1;
  cursor: pointer;
 }
+
+.ms-Button.ms-Button--hero-sync .ms-Button-label-sync {
+    border: 1px solid;
+    padding: 10px;
+    font-weight: 600;
+    background: #2b91c1;
+    color: white;
+    line-height: 40px;
+    font-size: 20px;
+   }
+   
