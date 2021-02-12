@@ -133,5 +133,6 @@ input[type=email], input[type=password] {
     color: white;
     line-height: 40px;
     font-size: 20px;
+    cursor: pointer;
    }
    
