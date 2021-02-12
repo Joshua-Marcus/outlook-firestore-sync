@@ -13,5 +13,8 @@
     },
   "extends": [
     "eslint-config-office-addins"
-  ]
+  ],
+  "rules": {
+    "no-undef":"off"
+  }
 }
