@@ -4,6 +4,7 @@ import "../../assets/icon-80.png";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/storage";
+import "firebase/firestore";
 import { config } from "../env/config";
 import * as md5 from "md5";
 
@@ -21,11 +22,11 @@ Office.onReady(info => {
     firebase.initializeApp(config.firebaseConfig);
     firebase.auth().onAuthStateChanged(async user => {
       if (user != null) {
+        await checkEmailIsSynced();
         document.getElementById("auth").style.display = "unset";
         document.getElementById("no-auth").style.display = "none";
         document.getElementById("authEmail").innerHTML = user.email;
 
-        await checkEmailIsSynced();
       } else {
         document.getElementById("no-auth").style.display = "unset";
       }
@@ -65,7 +66,8 @@ async function login() {
 
 async function syncEmail() {
   try {
-    // Recheck Auth
+    // Recheck Auth;
+    console.log('Syncing Email');
     const isLoggedIn = firebase.auth().currentUser;
     if (!isLoggedIn) {
       const noAuthMessage: Office.NotificationMessageDetails = {
@@ -109,7 +111,8 @@ async function syncEmail() {
       .firestore()
       .collection(config.emailCollectionPath)
       .doc(hashId)
-      .update(dbMailObj);
+      .set(dbMailObj, {merge: true});
+    await checkEmailIsSynced()
     
     const completed: Office.NotificationMessageDetails = {
       type: Office.MailboxEnums.ItemNotificationMessageType.InformationalMessage,
