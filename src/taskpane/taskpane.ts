@@ -19,11 +19,13 @@ interface Attachment {
 Office.onReady(info => {
   if (info.host === Office.HostType.Outlook) {
     firebase.initializeApp(config.firebaseConfig);
-    firebase.auth().onAuthStateChanged(user => {
+    firebase.auth().onAuthStateChanged(async user => {
       if (user != null) {
         document.getElementById("auth").style.display = "unset";
         document.getElementById("no-auth").style.display = "none";
         document.getElementById("authEmail").innerHTML = user.email;
+
+        await checkEmailIsSynced();
       } else {
         document.getElementById("no-auth").style.display = "unset";
       }
@@ -33,6 +35,20 @@ Office.onReady(info => {
     document.getElementById("sync-btn").onclick = syncEmail;
   }
 });
+
+async function checkEmailIsSynced() {
+  const currentEmailIdHash = md5(Office.context.mailbox.item.itemId);
+  const emailDocPath = await firebase.firestore().collection(config.emailCollectionPath).doc(currentEmailIdHash).get()
+  if(emailDocPath.exists) {
+    document.getElementById("sync-btn").style.pointerEvents = "none";
+    document.getElementById("sync-btn").style.opacity = "0.5";
+    document.getElementById("disabled-sync-msg").innerHTML = "This email has already been synced."
+  } else {
+    document.getElementById("sync-btn").style.pointerEvents = "click";
+    document.getElementById("sync-btn").style.opacity = "1";
+    document.getElementById("disabled-sync-msg").innerHTML = ""
+  }
+}
 
 async function login() {
   try {
@@ -92,6 +108,7 @@ async function syncEmail() {
       .firestore()
       .collection(config.emailCollectionPath)
       .add(dbMailObj);
+    await checkEmailIsSynced();
     const completed: Office.NotificationMessageDetails = {
       type: Office.MailboxEnums.ItemNotificationMessageType.InformationalMessage,
       message: "Your email has been synced!",
