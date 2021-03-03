@@ -64,7 +64,7 @@ async function syncEmail() {
 
     const storageRef = firebase.storage().ref();
 
-    const idString: string = md5(mailRecord.itemId);
+    const hashId: string = md5(mailRecord.itemId);
     const body = await getMailBody(Office.CoercionType.Html);
     let attachments = await getMailAttachments();
     attachments = await Promise.all(
@@ -80,7 +80,8 @@ async function syncEmail() {
       })
     );
     const dbMailObj = {
-      id: idString,
+      hashId: hashId,
+      outlook_item_id: mailRecord.itemId,
       body,
       subject: mailRecord.subject,
       from: { name: mailRecord.from.displayName, email: mailRecord.from.emailAddress },
@@ -91,7 +92,8 @@ async function syncEmail() {
     await firebase
       .firestore()
       .collection(config.emailCollectionPath)
-      .add(dbMailObj);
+      .doc(hashId)
+      .update(dbMailObj);
     const completed: Office.NotificationMessageDetails = {
       type: Office.MailboxEnums.ItemNotificationMessageType.InformationalMessage,
       message: "Your email has been synced!",
@@ -125,7 +127,7 @@ async function getMailAttachments(): Promise<Attachment[]> {
       return await new Promise((resolve, reject) => {
         Office.context.mailbox.item.getAttachmentContentAsync(attachment.id, function(asyncResult) {
           if (asyncResult.status !== Office.AsyncResultStatus.Succeeded) {
-            reject();
+            reject('Status not succeeded: ' + asyncResult.status);
           } else {
             resolve({
               content: asyncResult.value.content,
