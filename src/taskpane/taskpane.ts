@@ -111,7 +111,7 @@ async function syncEmail() {
       .firestore()
       .collection(config.emailCollectionPath)
       .doc(hashId)
-      .set(dbMailObj, {merge: true});
+      .set(dbMailObj, {merge: false});
     await checkEmailIsSynced()
     
     const completed: Office.NotificationMessageDetails = {
