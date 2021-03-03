@@ -2,7 +2,6 @@
 
 <!-- [START badges] -->
 [![License](https://img.shields.io/npm/l/ngx-auto-table.svg)](https://github.com/Joshua-Marcus/outlook-firestore-sync/blob/master/LICENSE) 
-[![Github Issues](https://img.shields.io/github/issues/benwinding/ngx-auto-table.svg)](https://github.com/Joshua-Marcus/outlook-firestore-sync)
 <!-- [END badges] -->
 
 A simple Outlook Add-In to save emails to Google Firestore.
