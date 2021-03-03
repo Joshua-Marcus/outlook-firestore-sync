@@ -43,11 +43,11 @@ async function checkEmailIsSynced() {
   if(emailDocPath.exists) {
     document.getElementById("sync-btn").style.pointerEvents = "none";
     document.getElementById("sync-btn").style.opacity = "0.5";
-    document.getElementById("disabled-sync-msg").innerHTML = "This email has already been synced."
+    document.getElementById("sync-btn-msg").innerHTML = "Email Synced"
   } else {
     document.getElementById("sync-btn").style.pointerEvents = "click";
     document.getElementById("sync-btn").style.opacity = "1";
-    document.getElementById("disabled-sync-msg").innerHTML = ""
+    document.getElementById("sync-btn-msg").innerHTML = "Sync Email"
   }
 }
 
