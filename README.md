@@ -4,8 +4,6 @@
 [![License](https://img.shields.io/npm/l/ngx-auto-table.svg)](https://github.com/Joshua-Marcus/outlook-firestore-sync/blob/master/LICENSE) 
 <!-- [END badges] -->
 
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=josh%40orbitandco.com.au&item_name=Development&currency_code=AUD&source=url)
-
 A simple Outlook Add-In to save emails to Google Firestore.
 
 ### Setup
